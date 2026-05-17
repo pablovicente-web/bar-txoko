@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bar Txoko · Pamplona</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: #0f0a04;
+    color: #f0e6d3;
+  }
+
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(to bottom, rgba(10,6,2,0.6) 0%, rgba(10,6,2,0.85) 100%),
+                url('https://images.unsplash.com/photo-1515443961218-a51367888e4b?w=1400&q=80') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #c8860a;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    font-weight: 600;
+    color: #f5ede0;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .hero-sub {
+    font-size: clamp(14px, 3vw, 18px);
+    color: #b89d7a;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .badge {
+    font-size: 13px;
+    color: #d4ae78;
+    font-weight: 300;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .badge::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #c8860a;
+    display: inline-block;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #6b5a42;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #c8860a;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: #f5ede0;
+    margin-bottom: 3rem;
+    font-weight: 400;
+  }
+
+  .divider {
+    width: 40px;
+    height: 2px;
+    background: #c8860a;
+    margin: 1rem 0 3rem;
+  }
+
+  .menu-category {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #c8860a;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .menu-category:first-child { margin-top: 0; }
+
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1rem 0;
+    border-bottom: 0.5px solid rgba(200,134,10,0.2);
+    gap: 1rem;
+  }
+
+  .item-left { flex: 1; }
+
+  .item-name {
+    font-size: 16px;
+    font-weight: 400;
+    color: #f0e6d3;
+    margin-bottom: 3px;
+  }
+
+  .item-desc {
+    font-size: 13px;
+    color: #7a6a54;
+    font-weight: 300;
+  }
+
+  .item-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: #c8860a;
+    white-space: nowrap;
+  }
+
+  .menu-highlight {
+    background: rgba(200,134,10,0.08);
+    border: 0.5px solid rgba(200,134,10,0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+
+  .menu-highlight .price {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #c8860a;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .menu-highlight p {
+    font-size: 14px;
+    color: #7a6a54;
+    font-weight: 300;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .info-card {
+    border: 0.5px solid rgba(200,134,10,0.25);
+    border-radius: 8px;
+    padding: 1.75rem;
+  }
+
+  .info-card-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #c8860a;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+  }
+
+  .info-card-value {
+    font-size: 14px;
+    color: #b89d7a;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .cta-section {
+    background: rgba(200,134,10,0.06);
+    border-top: 0.5px solid rgba(200,134,10,0.2);
+    border-bottom: 0.5px solid rgba(200,134,10,0.2);
+    text-align: center;
+    padding: 5rem 2rem;
+  }
+
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    color: #f5ede0;
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  .cta-section p {
+    font-size: 14px;
+    color: #7a6a54;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .btn {
+    display: inline-block;
+    background: #c8860a;
+    color: #0f0a04;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1rem 2.5rem;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+
+  .btn:hover { background: #e09a12; }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 12px;
+    color: #3a2f1e;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero" style="position:relative;">
+  <p class="hero-label">Desde 1987 · Pamplona</p>
+  <h1>Bar Txoko</h1>
+  <p class="hero-sub">Pintxos caseros y vino navarro en el corazón de Pamplona</p>
+  <div class="hero-badges">
+    <span class="badge">Abierto hoy</span>
+    <span class="badge">Casco Antiguo</span>
+    <span class="badge">948 00 00 00</span>
+  </div>
+  <p class="scroll-hint">↓ ver carta</p>
+</div>
+
+<section>
+  <p class="section-label">Lo que ofrecemos</p>
+  <h2 class="section-title">Nuestra carta</h2>
+  <div class="divider"></div>
+
+  <p class="menu-category">Pintxos del día</p>
+  <div class="menu-item">
+    <div class="item-left">
+      <p class="item-name">Gilda clásica</p>
+      <p class="item-desc">Anchoa, piparra y oliva</p>
+    </div>
+    <span class="item-price">1,80 €</span>
+  </div>
+  <div class="menu-item">
+    <div class="item-left">
+      <p class="item-name">Pintxo de bacalao</p>
+      <p class="item-desc">Con pimiento del piquillo</p>
+    </div>
+    <span class="item-price">2,50 €</span>
+  </div>
+  <div class="menu-item">
+    <div class="item-left">
+      <p class="item-name">Champiñones al ajillo</p>
+      <p class="item-desc">Con jamón serrano</p>
+    </div>
+    <span class="item-price">2,20 €</span>
+  </div>
+
+  <p class="menu-category">Raciones</p>
+  <div class="menu-item">
+    <div class="item-left">
+      <p class="item-name">Chistorra a la sidra</p>
+      <p class="item-desc">Receta de la abuela</p>
+    </div>
+    <span class="item-price">8,50 €</span>
+  </div>
+  <div class="menu-item">
+    <div class="item-left">
+      <p class="item-name">Pochas con codorniz</p>
+      <p class="item-desc">Temporada otoño-invierno</p>
+    </div>
+    <span class="item-price">11,00 €</span>
+  </div>
+
+  <div class="menu-highlight">
+    <span class="price">13,50 €</span>
+    <p>Menú del día · Primero + segundo + postre + bebida</p>
+    <p style="margin-top:0.5rem;">De lunes a viernes · Hasta las 15:30 h</p>
+  </div>
+</section>
+
+<section>
+  <p class="section-label">Dónde estamos</p>
+  <h2 class="section-title">Encuéntranos</h2>
+  <div class="divider"></div>
+  <div class="info-grid">
+    <div class="info-card">
+      <p class="info-card-label">Horario</p>
+      <p class="info-card-value">
+        Lunes a viernes<br>08:00 – 23:00<br><br>
+        Sábado y domingo<br>10:00 – 00:00
+      </p>
+    </div>
+    <div class="info-card">
+      <p class="info-card-label">Dirección</p>
+      <p class="info-card-value">
+        Calle Estafeta, 42<br>Casco Antiguo<br>31001 Pamplona
+      </p>
+    </div>
+    <div class="info-card">
+      <p class="info-card-label">Contacto</p>
+      <p class="info-card-value">
+        948 00 00 00<br><br>
+        WhatsApp disponible<br>
+        @bartxoko_pamplona
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <h2>¿Quieres reservar una mesa?</h2>
+  <p>Llámanos o escríbenos directamente por WhatsApp</p>
+  <a href="tel:948000000" class="btn">Llamar ahora</a>
+</div>
+
+<footer>
+  © 2026 Bar Txoko · Pamplona
+</footer>
+
+</body>
+</html>
